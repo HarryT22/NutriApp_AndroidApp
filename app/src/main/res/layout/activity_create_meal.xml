@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:layout_gravity="center_horizontal"
+    android:fitsSystemWindows="true"
+    android:textAlignment="center">
+
+    <TextView
+        android:id="@+id/meal_category_question"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Wähle eine der Kategorien aus!"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/sl_radio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="65dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/meal_category_question"
+        tools:layout_editor_absoluteY="156dp">
+
+        <RadioButton
+            android:id="@+id/sl_breakfast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClicked"
+            android:text="@string/sl_breakfast"
+            app:layout_constraintTop_toTopOf="@id/meal_category_question" />
+
+        <RadioButton
+            android:id="@+id/sl_lunch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClicked"
+            android:text="@string/lunch"
+            app:layout_constraintTop_toBottomOf="@id/sl_breakfast" />
+
+        <RadioButton
+            android:id="@+id/sl_dinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClicked"
+            android:text="@string/dinner"
+            app:layout_constraintTop_toBottomOf="@id/sl_lunch" />
+
+        <RadioButton
+            android:id="@+id/sl_snack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClicked"
+            android:text="@string/snack"
+            app:layout_constraintTop_toBottomOf="@id/sl_dinner" />
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/bn_create_meal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Meal erstellen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sl_radio" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

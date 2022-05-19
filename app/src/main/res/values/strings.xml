@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Nutrition Application</string>
+    <string name="meals">Meals</string>
+    <string name="foodEntries">Food entries</string>
+    <string name="sl_breakfast">breakfast</string>
+    <string name="lunch">lunch</string>
+    <string name="dinner">dinner</string>
+    <string name="snack">snack</string>
+</resources>
