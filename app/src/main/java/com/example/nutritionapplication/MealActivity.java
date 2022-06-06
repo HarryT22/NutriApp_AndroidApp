@@ -1,9 +1,11 @@
 package com.example.nutritionapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.Toast;
 
 import com.example.nutritionapplication.NutritionAndroidApplication;
@@ -12,6 +14,7 @@ import com.example.nutritionapplication.databinding.ActivityMealBinding;
 import com.example.nutritionapplication.dto.MealTO;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
@@ -26,6 +29,9 @@ public class MealActivity extends AppCompatActivity {
     private ArrayList<MealTO> mealList;
     private MealArrayAdapter mealArrayAdapter;
     private ActivityMealBinding binding;
+    private int year;
+    private int month;
+    private int day;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +41,10 @@ public class MealActivity extends AppCompatActivity {
         this.myApp = (NutritionAndroidApplication) getApplication();
         this.mealList = new ArrayList<MealTO>();
         this.mealArrayAdapter = new MealArrayAdapter(mealList, this);
+        final Calendar c = Calendar.getInstance();
+        year = c.get(Calendar.YEAR);
+        month = c.get(Calendar.MONTH);
+        day = c.get(Calendar.DAY_OF_MONTH);
         binding.slMealList.setAdapter(mealArrayAdapter);
 
         binding.slSwipeRefresh.setOnRefreshListener(() -> {
@@ -42,12 +52,29 @@ public class MealActivity extends AppCompatActivity {
                     binding.slSwipeRefresh.setRefreshing(false);
                 }
         );
-
         binding.fabNewMeal.setOnClickListener((View view) -> {
             this.goToCreateMeal();
         });
 
-        this.getMeals();
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this,
+                new DatePickerDialog.OnDateSetListener() {
+
+
+                    @Override
+                    public void onDateSet(DatePicker view, int year,
+                                          int monthOfYear, int dayOfMonth) {
+                        binding.headingMeals.setText("Meals " + (dayOfMonth) + "." + (monthOfYear+1) + "." + year);
+                        day = dayOfMonth;
+                        month = monthOfYear+1;
+                        year = year;
+                        getMeals();
+                    }
+                }, year, month, day);
+
+        datePickerDialog.show();
+        binding.bnChooseDate.setOnClickListener((View view) -> {
+            datePickerDialog.show();
+        });
     }
 
     @Override
