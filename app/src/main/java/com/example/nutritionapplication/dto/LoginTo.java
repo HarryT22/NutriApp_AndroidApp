@@ -6,14 +6,17 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-@AllArgsConstructor
+
 @Getter
 @Setter
 @ToString
 public class LoginTo {
         private String email;
         private String password;
-        private Role role;
+    public LoginTo(String emial,String password){
+        this.email=emial;
+        this.password=password;
+    }
     }
 
 

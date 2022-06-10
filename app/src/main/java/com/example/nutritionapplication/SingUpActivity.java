@@ -9,6 +9,7 @@ import android.widget.CheckBox;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+import com.example.nutritionapplication.databinding.ActivitySignUpBinding;
 import com.example.nutritionapplication.dto.AppUserZiele;
 import com.example.nutritionapplication.dto.Gender;
 import com.example.nutritionapplication.dto.RegistrationTo;
@@ -23,24 +24,25 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SingUpAktivitiy extends AppCompatActivity {
+public class SingUpActivity extends AppCompatActivity {
+    private ActivitySignUpBinding binding;
 
-    Button button = (Button) findViewById(R.id.button4);
-    Button button2=(Button)  findViewById(R.id.button3);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.sign_up_aktitvity);
+        this.binding = ActivitySignUpBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        button.setOnClickListener(new View.OnClickListener() {
+        binding.button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                button.setEnabled(false);
+                binding.button4.setEnabled(false);
                 doRegister();
             }
-        });
+        }
+        );
 
-        button.setOnClickListener(new View.OnClickListener() {
+        binding.button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), SignInActivity.class);
@@ -105,13 +107,13 @@ public class SingUpAktivitiy extends AppCompatActivity {
 
                 } else {
                     showToast("Register failed: Check Credentials");
-                    button.setEnabled(true);
+                    binding.button4.setEnabled(true);
                 }
             }
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
                 showToast("Communication error occured");
-                button.setEnabled(true);
+                binding.button4.setEnabled(true);
             }
         });
     }
