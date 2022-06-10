@@ -15,7 +15,30 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NutritionApplication"
         android:usesCleartextTraffic="true">
-
+        <activity
+            android:name=".deleteFoodFromRecipeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DisplayRezeptActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ListNormalActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DeleteRecipeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".addFoodToRecipeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddRecipeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SearchbarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
         <activity
             android:name=".MealActivity"
             android:exported="true"

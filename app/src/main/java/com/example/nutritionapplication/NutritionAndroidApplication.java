@@ -7,6 +7,7 @@ import com.example.nutritionapplication.dto.MealTO;
 import com.example.nutritionapplication.service.FoodService;
 import com.example.nutritionapplication.service.IUserService;
 import com.example.nutritionapplication.service.MealService;
+import com.example.nutritionapplication.service.RezepteService;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -19,6 +20,7 @@ public class NutritionAndroidApplication extends Application {
     private MealService mealService;
     private FoodService foodService;
     private IUserService iUserService;
+    private RezepteService rezepteService;
     private String jwt;
     private Date date;
 
@@ -31,12 +33,15 @@ public class NutritionAndroidApplication extends Application {
         this.mealService = retrofit.create(MealService.class);
         this.foodService = retrofit.create(FoodService.class);
         this.iUserService=retrofit.create(IUserService.class);
+        this.rezepteService= retrofit.create(RezepteService.class);
         this.date = new Date();
     }
 
     public MealService getMealService() { return  this.mealService; }
 
     public FoodService getFoodService() {return  this.foodService;}
+
+    public RezepteService getRezepteService() {return  this.rezepteService;}
 
     public void setDate(Date date) {
         this.date = date;
@@ -49,9 +54,12 @@ public class NutritionAndroidApplication extends Application {
     public IUserService getIUserService() {
         return this.iUserService;
     }
+
     public String getJwt() {
         return jwt;
     }
+
     public void setJwt(String jwt) {
         this.jwt = jwt;
-    }}
+    }
+}
