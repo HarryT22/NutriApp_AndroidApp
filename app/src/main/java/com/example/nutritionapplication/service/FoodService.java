@@ -15,5 +15,5 @@ import retrofit2.http.Path;
 
 public interface FoodService {
     @GET("/rest/food/name={name}")
-    public Call<List<FoodTO>> getSearchResults(@Path("name") String name);
+    public Call<List<FoodTO>> getSearchResults(@Header ("Authorization") String jwt, @Path("name") String name);
 }

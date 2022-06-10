@@ -1,8 +1,12 @@
 package com.example.nutritionapplication;
 
+import android.app.AlertDialog;
+import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
@@ -27,6 +31,7 @@ public class MealAddingActivity extends AppCompatActivity {
     private NutritionAndroidApplication myApp;
     private String category;
     private ActivityCreateMealBinding binding;
+    private AlertDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +40,15 @@ public class MealAddingActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         this.myApp = (NutritionAndroidApplication) getApplication();
         this.category = "";
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Witz");
+        builder.setCancelable(false);
+        builder.setPositiveButton("OK", null);
+        this.dialog = builder.create();
+
+        binding.bnGetJoke.setOnClickListener((View view) -> {
+            this.getJoke("Programming");
+        });
 
         binding.bnCreateMeal.setOnClickListener((View view) -> {
             this.createMeal(category);
@@ -50,19 +64,19 @@ public class MealAddingActivity extends AppCompatActivity {
             case R.id.sl_breakfast:
                 if (checked)
                     this.category = "breakfast";
-                    break;
+                break;
             case R.id.sl_lunch:
                 if (checked)
                     this.category = "lunch";
-                    break;
+                break;
             case R.id.sl_dinner:
                 if (checked)
                     this.category = "dinner";
-                    break;
+                break;
             case R.id.sl_snack:
                 if (checked)
                     this.category = "snack";
-                    break;
+                break;
         }
     }
 
@@ -70,7 +84,7 @@ public class MealAddingActivity extends AppCompatActivity {
         if(category.equals("")) {
             showToast("Please choose a category");
         } else {
-            Call<Void> call = this.myApp.getMealService().createMeal(10,04,2022, this.category, "peter@gmail.com");
+            Call<Void> call = this.myApp.getMealService().createMeal("Bearer " + this.myApp.getJwt(), 10,04,2022, category);
             call.enqueue(new Callback<Void>() {
                 @Override
                 public void onResponse(Call<Void> call, Response<Void> response) {
@@ -89,6 +103,28 @@ public class MealAddingActivity extends AppCompatActivity {
             });
         }
     }
+
+    public void getJoke(String category) {
+        Call<String> call = this.myApp.getMealService().getJoke("Bearer " + this.myApp.getJwt(), category);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (response.isSuccessful()) {
+                    String joke = response.body().toString();
+                    dialog.setMessage(joke);
+                    dialog.show();
+                } else {
+                    showToast("Communication error occured. " + response.message());
+                }
+            }
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                showToast("Communication error occured. Try again!");
+            }
+        });
+    }
+
+
 
     private void showToast(String message) {
         Toast toast = Toast.makeText(this, message, Toast.LENGTH_SHORT);

@@ -57,7 +57,7 @@ public class FoodListActivity extends AppCompatActivity {
         this.getFoodEntries();
     }
     public void getFoodEntries() {
-        Call<MealTO> call = this.myApp.getMealService().getMeal(1);
+        Call<MealTO> call = this.myApp.getMealService().getMeal("Bearer " + this.myApp.getJwt(),1);
         call.enqueue(new Callback<MealTO>() {
             @Override
             public void onResponse(Call<MealTO> call, Response<MealTO> response) {
@@ -79,7 +79,7 @@ public class FoodListActivity extends AppCompatActivity {
     }
 
     public void deleteFood(FoodEntryTO foodEntryTO) {
-        Call<Void> call = this.myApp.getMealService().deleteFood(id, foodEntryTO.getId());
+        Call<Void> call = this.myApp.getMealService().deleteFood("Bearer " + this.myApp.getJwt(), id, foodEntryTO.getId());
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
