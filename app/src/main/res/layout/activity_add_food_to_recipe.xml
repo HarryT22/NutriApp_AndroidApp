@@ -62,20 +62,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/proteinInput">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/foodAmountInput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/foodAmountText" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/foodAddSubmit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="161dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="76dp"
         android:text="@string/submit"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout3" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/foodAmountInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/foodAmountText"
+        tools:layout_editor_absoluteX="91dp"
+        tools:layout_editor_absoluteY="113dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
