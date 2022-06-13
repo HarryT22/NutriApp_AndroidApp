@@ -45,7 +45,7 @@ public class SingUpActivity extends AppCompatActivity {
         binding.button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), SignInActivity.class);
+                Intent intent = new Intent(getApplicationContext(),SingInActivity.class);
                 startActivity(intent);
             }
         });
@@ -102,7 +102,7 @@ public class SingUpActivity extends AppCompatActivity {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    Intent intent = new Intent(getApplicationContext(), SignInActivity.class);
+                    Intent intent = new Intent(getApplicationContext(),SingInActivity.class);
                     startActivity(intent);
 
                 } else {
