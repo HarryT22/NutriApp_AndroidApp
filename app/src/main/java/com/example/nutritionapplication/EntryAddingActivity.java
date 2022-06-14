@@ -65,7 +65,7 @@ public class EntryAddingActivity extends AppCompatActivity {
         if(quantity <= 0) {
             showToast("Please enter valid quantity");
         } else {
-            Call<Void> call = this.myApp.getMealService().addFood(mealId,foodId, quantity);
+            Call<Void> call = this.myApp.getMealService().addFood("Bearer " + this.myApp.getJwt(),mealId,foodId, quantity);
             call.enqueue(new Callback<Void>() {
                 @Override
                 public void onResponse(Call<Void> call, Response<Void> response) {

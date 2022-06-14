@@ -9,9 +9,9 @@ import retrofit2.http.Body;
 import retrofit2.http.POST;
 
 public interface IUserService {
-    @POST("/user/login")
+    @POST("/rest/login")
     public Call<ResponseBody> login(@Body LoginTo userTO);
 
-    @POST("/api/v1/register")
+    @POST("/rest/registration")
     public Call<ResponseBody> register(@Body RegistrationTo RegisterTO);
 }

@@ -81,7 +81,7 @@ public class MealActivity extends AppCompatActivity {
     public void onBackPressed() {}
 
     public void getMeals() {
-        Call<List<MealTO>> call = this.myApp.getMealService().getDailyMeals(10,04,2022,"peter@gmail.com");
+        Call<List<MealTO>> call = this.myApp.getMealService().getDailyMeals("Bearer " + this.myApp.getJwt(), 10,04,2022);
         call.enqueue(new Callback<List<MealTO>>() {
             @Override
             public void onResponse(Call<List<MealTO>> call, Response<List<MealTO>> response) {

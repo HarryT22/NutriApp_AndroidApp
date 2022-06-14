@@ -56,7 +56,7 @@ public class FoodSearchActivity extends AppCompatActivity {
         binding.searchInput.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-            // do something on text submit
+                // do something on text submit
                 getSearchResults(String.valueOf(binding.searchInput.getQuery()));
                 return true;
             }
@@ -71,7 +71,7 @@ public class FoodSearchActivity extends AppCompatActivity {
         if(searchString.length()<= 3) {
             showToast("Search have to include more than 3 letters");
         } else {
-            Call<List<FoodTO>> call = this.myApp.getFoodService().getSearchResults(searchString);
+            Call<List<FoodTO>> call = this.myApp.getFoodService().getSearchResults("Bearer " + this.myApp.getJwt(), searchString);
             call.enqueue(new Callback<List<FoodTO>>() {
                 @Override
                 public void onResponse(Call<List<FoodTO>> call, Response<List<FoodTO>> response) {
