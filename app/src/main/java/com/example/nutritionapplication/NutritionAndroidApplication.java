@@ -27,7 +27,7 @@ public class NutritionAndroidApplication extends Application {
     public NutritionAndroidApplication() {
         Retrofit retrofit = new Retrofit.Builder()
                 //replace url in next line by the address of the virtual machine running your shopping list service
-                .baseUrl("http://10.0.2.2:8080") // 10.0.2.2 stands for localhost
+                .baseUrl("http://test-sweng-sweng-team12-nutriapp-datainput-gateway.wi-k8s.fh-muenster.de") // 10.0.2.2 stands for localhost
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         this.mealService = retrofit.create(MealService.class);

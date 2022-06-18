@@ -41,6 +41,10 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent5 = new Intent(this,addFoodToRecipeActivity.class);
                 startActivity(intent5);
                 break;
+            case R.id.MealActivity:
+                Intent intent6 = new Intent(this,MealActivity.class);
+                startActivity(intent6);
+                break;
         }
         return true;
     }

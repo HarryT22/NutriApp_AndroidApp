@@ -21,4 +21,8 @@
         android:id="@+id/AddFoodToRecipe"
         android:title="Add food to recipe"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/MealActivity"
+        android:title="Search for a meal"
+        app:showAsAction="never" />
 </menu>

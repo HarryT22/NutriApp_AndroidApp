@@ -25,13 +25,13 @@ public class deleteFoodFromRecipeActivity extends AppCompatActivity {
         this.binding = ActivityDeleteFoodFromRecipeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         this.myApp = (NutritionAndroidApplication) getApplication();
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         binding.deleteFoodButton.setOnClickListener((View view) ->
                 this.deleteFood(Integer.parseInt(binding.ffrRid.getText().toString()),Integer.parseInt(binding.ffrFid.getText().toString())));
     }
 
     public void deleteFood(int rId,int fId){
-        Call<RezepteTO> call = this.myApp.getRezepteService().deleteFoodFromRezept(rId,fId);
+        Call<RezepteTO> call = this.myApp.getRezepteService().deleteFoodFromRezept("Bearer "+myApp.getJwt(),rId,fId);
         call.enqueue(new Callback<RezepteTO>() {
             @Override
             public void onResponse(Call<RezepteTO> call, Response<RezepteTO> response) {

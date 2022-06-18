@@ -28,14 +28,14 @@ public class addFoodToRecipeActivity extends AppCompatActivity {
         this.binding = ActivityAddFoodToRecipeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         this.myApp = (NutritionAndroidApplication) getApplication();
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         binding.foodAddSubmit.setOnClickListener((View view) ->
                 this.addFood(Integer.parseInt(binding.addFoodId.getText().toString()),binding.foodNameInput.getText().toString(), Integer.parseInt(binding.calorieInput.getText().toString()),Integer.parseInt(binding.proteinInput.getText().toString()),
         binding.foodAmountInput.getText().toString()));
     }
 
     public void addFood(int id, String name, int calories, int protein, String menge){
-        Call<RezepteTO> call = this.myApp.getRezepteService().addFood(id,name,calories,protein,menge);
+        Call<RezepteTO> call = this.myApp.getRezepteService().addFood("Bearer "+myApp.getJwt(),id,name,calories,protein,menge);
         call.enqueue(new Callback<RezepteTO>() {
             @Override
             public void onResponse(Call<RezepteTO> call, Response<RezepteTO> response) {

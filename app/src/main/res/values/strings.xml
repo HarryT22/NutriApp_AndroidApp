@@ -46,4 +46,7 @@
     <string name="listCalories">Calories:</string>
     <string name="listProteins">Protein:</string>
     <string name="listMenueart">Menutype:</string>
+    <string name="welcome">Welcome to the Nutri-App!</string>
+    <string name="instruction">Use the top right menu to navigate through the app!</string>
+
 </resources>

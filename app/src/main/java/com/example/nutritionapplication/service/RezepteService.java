@@ -7,6 +7,7 @@ import java.util.List;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
@@ -27,15 +28,15 @@ public interface RezepteService {
                                       @Path("p") int portionen, @Path("ma") String menueart,
                                       @Path("iv") boolean isVegan, @Path("ivt") boolean isVegetarisch,
                                       @Path("h") boolean h, @Path("l") boolean l, @Path("f") boolean f,
-                                      @Part("file") RequestBody image);
+                                      @Body RequestBody image);
 
     @POST("/rest/searchbar/addF/{id}/{name}/{k}/{p}/{menge}")
-    public Call<RezepteTO> addFood(@Path("id")int id,@Path("name") String name, @Path("k") int kalorien, @Path("p") int protein,
+    public Call<RezepteTO> addFood(@Header("Authorization") String Authorization,@Path("id")int id,@Path("name") String name, @Path("k") int kalorien, @Path("p") int protein,
                                    @Path("menge") String menge);
 
     @DELETE("/rest/searchbar/delete/{id}")
-    public Call<Void> deleteRezept(@Path("id") int id);
+    public Call<Void> deleteRezept(@Header("Authorization") String Authorization,@Path("id") int id);
 
     @DELETE("/rest/searchbar/deleteF/{rId}/{fId}")
-    public Call<RezepteTO> deleteFoodFromRezept(@Path("rId") int rId,@Path("fId") int fId);
+    public Call<RezepteTO> deleteFoodFromRezept(@Header("Authorization") String Authorization,@Path("rId") int rId,@Path("fId") int fId);
 }

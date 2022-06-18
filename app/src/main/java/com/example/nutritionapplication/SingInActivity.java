@@ -60,7 +60,7 @@ private ActivitySingInBinding binding;
                    } catch (IOException e) {
                        e.printStackTrace();
                    }
-                   Intent intent = new Intent(getApplicationContext(),MealActivity.class);
+                   Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                    startActivity(intent);
 
                } else {

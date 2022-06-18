@@ -46,7 +46,7 @@ public class MealActivity extends AppCompatActivity {
         month = c.get(Calendar.MONTH);
         day = c.get(Calendar.DAY_OF_MONTH);
         binding.slMealList.setAdapter(mealArrayAdapter);
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         binding.slSwipeRefresh.setOnRefreshListener(() -> {
                     this.getMeals();
                     binding.slSwipeRefresh.setRefreshing(false);

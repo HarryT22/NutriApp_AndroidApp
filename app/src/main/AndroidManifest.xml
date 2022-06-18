@@ -4,7 +4,7 @@
     package="com.example.nutritionapplication">
 
     <uses-permission android:name="android.permission.INTERNET" />                     <!-- Permission for internet -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>        <!-- Permission for accessing storage -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />     <!-- Permission for accessing storage -->
 
     <application
         android:name=".NutritionAndroidApplication"
@@ -17,30 +17,38 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".deleteFoodFromRecipeActivity"
+            android:parentActivityName=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".DisplayRezeptActivity"
+            android:parentActivityName=".SearchbarActivity"
             android:exported="false" />
         <activity
             android:name=".ListNormalActivity"
-            android:exported="false" />
-        <activity
-            android:name=".DeleteRecipeActivity"
-            android:exported="false" />
-        <activity
-            android:name=".addFoodToRecipeActivity"
-            android:exported="false" />
-        <activity
-            android:name=".AddRecipeActivity"
-            android:exported="false" />
-        <activity
-            android:name=".SearchbarActivity"
+            android:parentActivityName=".SearchbarActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity
+            android:name=".addFoodToRecipeActivity"
+            android:parentActivityName=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddRecipeActivity"
+            android:parentActivityName=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SearchbarActivity"
+            android:parentActivityName=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DeleteRecipeActivity"
+            android:parentActivityName=".MainActivity"
+            android:exported="false" />
+        <activity
             android:name=".MealActivity"
+            android:parentActivityName=".MainActivity"
             android:exported="true"
             android:windowSoftInputMode="stateHidden">
 
@@ -70,8 +78,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
 
     </application>
 
