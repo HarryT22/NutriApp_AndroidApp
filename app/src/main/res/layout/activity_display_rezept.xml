@@ -13,6 +13,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:text="@string/listRezeptname"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,6 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:text="TextView"
         app:layout_constraintStart_toEndOf="@id/textView"
         app:layout_constraintTop_toTopOf="parent" />
@@ -46,6 +48,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:text="@string/listArbeitszeit"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -56,6 +59,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:text="TextView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         app:layout_constraintStart_toEndOf="@+id/textView29"
         app:layout_constraintTop_toBottomOf="@+id/displayrecipeName" />
 
@@ -66,6 +70,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:text="@string/listKochzeit"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView29" />
 
@@ -76,6 +81,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:text="TextView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         app:layout_constraintStart_toEndOf="@+id/textView31"
         app:layout_constraintTop_toBottomOf="@+id/displayrecipeWorkingtime" />
 
@@ -86,6 +92,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:text="@string/listGesamtzeit"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView31" />
 
@@ -96,6 +103,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:text="TextView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         app:layout_constraintStart_toEndOf="@+id/textView33"
         app:layout_constraintTop_toBottomOf="@+id/displayrecipeCookingtime" />
 
@@ -106,6 +114,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:text="@string/listPortionen"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView33" />
 
@@ -116,6 +125,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:text="TextView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         app:layout_constraintStart_toEndOf="@+id/textView35"
         app:layout_constraintTop_toBottomOf="@+id/displayrecipeOveralltime" />
 
@@ -126,6 +136,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:text="@string/listMenueart"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView35" />
 
@@ -136,6 +147,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:text="TextView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         app:layout_constraintStart_toEndOf="@+id/textView37"
         app:layout_constraintTop_toBottomOf="@+id/displayrecipePortionen" />
 
@@ -146,6 +158,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:text="@string/listVegan"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView37" />
 
@@ -156,6 +169,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:text="TextView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         app:layout_constraintStart_toEndOf="@+id/textView39"
         app:layout_constraintTop_toBottomOf="@+id/displayrecipeMenutype" />
 
@@ -166,6 +180,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:text="@string/listVegetarisch"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView39" />
 
@@ -176,6 +191,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:text="TextView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         app:layout_constraintStart_toEndOf="@+id/textView41"
         app:layout_constraintTop_toBottomOf="@+id/displayrecipeVegan" />
 
@@ -186,6 +202,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:text="@string/listFructose"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView41" />
 
@@ -196,6 +213,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:text="TextView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         app:layout_constraintStart_toEndOf="@+id/textView43"
         app:layout_constraintTop_toBottomOf="@+id/displayrecipeVegetarisch" />
 
@@ -206,6 +224,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:text="@string/listLactose"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView43" />
 
@@ -216,6 +235,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:text="TextView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         app:layout_constraintStart_toEndOf="@+id/textView45"
         app:layout_constraintTop_toBottomOf="@+id/displayrecipeFructose" />
 
@@ -226,6 +246,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:text="@string/listHistamine"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView45" />
 
@@ -236,6 +257,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:text="TextView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         app:layout_constraintStart_toEndOf="@+id/textView47"
         app:layout_constraintTop_toBottomOf="@+id/displayrecipeLactose" />
 
@@ -245,6 +267,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:text="@string/listCalories"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView47" />
@@ -256,6 +279,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:text="TextView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         app:layout_constraintStart_toEndOf="@+id/textView49"
         app:layout_constraintTop_toBottomOf="@+id/textView47" />
 
@@ -266,6 +290,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:text="@string/listProteins"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView49" />
 
@@ -275,6 +300,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/textView51"
         app:layout_constraintTop_toBottomOf="@+id/displayrecipeCalories" />
@@ -286,6 +312,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginBottom="5dp"
         android:text="@string/listAuthor"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         app:layout_constraintBottom_toTopOf="@+id/displayrecipeImage"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -296,6 +323,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginBottom="5dp"
         android:text="TextView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         app:layout_constraintBottom_toTopOf="@+id/displayrecipeImage"
         app:layout_constraintStart_toEndOf="@+id/textView53" />
 
