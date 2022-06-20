@@ -1,38 +1,22 @@
 package com.example.nutritionapplication;
 
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 import com.example.nutritionapplication.databinding.ActivityAddRecipeBinding;
-
 import com.example.nutritionapplication.dto.RezepteTO;
-
-
 import java.io.ByteArrayOutputStream;
-
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.Serializable;
 import java.util.Base64;
-
-
 import okhttp3.MediaType;
-
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -50,7 +34,6 @@ public class AddRecipeActivity extends AppCompatActivity {
     RezepteTO recipe;
     ImageView imgGallery;
     RequestBody rq;
-    int SELECT_PICTURE = 200;
     ActivityResultLauncher<String> mTakePhoto;
 
     @Override
@@ -62,17 +45,10 @@ public class AddRecipeActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-        mTakePhoto = registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
-            @Override
-            public void onActivityResult(Uri result) {
-                binding.recipeImage.setImageURI(result);
-            }
-        });
+        mTakePhoto = registerForActivityResult(new ActivityResultContracts.GetContent(), result -> binding.recipeImage.setImageURI(result));
 
         this.imgGallery = findViewById(R.id.recipeImage);
-        imgGallery.setOnClickListener(v -> {
-            mTakePhoto.launch("image/*");
-        });
+        imgGallery.setOnClickListener(v -> mTakePhoto.launch("image/*"));
 
         binding.submitRecipie.setOnClickListener((View view) ->{
             showToast("Calling save rezept");
@@ -117,31 +93,31 @@ public class AddRecipeActivity extends AppCompatActivity {
         }else{
             Call<RezepteTO> call = this.myApp.getRezepteService().saveRezept
                     ("Bearer "+ this.myApp.getJwt(), name,workingtime,cookingtime,portions,menu,isvegan,isvegetarian,histamine,lactose,fructose,rq);
-            call.enqueue(new Callback<RezepteTO>() {
+            call.enqueue(new Callback<>() {
                 @Override
                 public void onResponse(Call<RezepteTO> call, Response<RezepteTO> response) {
-                    if(response.isSuccessful()){
+                    if (response.isSuccessful()) {
                         recipe = response.body();
                         Intent intent = new Intent(getApplicationContext(), DisplayRezeptActivity.class);
                         Bundle b1 = new Bundle();
-                        b1.putInt("wt",recipe.getArbeitszeit());
-                        b1.putInt("ct",recipe.getKochzeit());
-                        b1.putInt("ot",recipe.getGesamtzeit());
-                        b1.putInt("portionen",recipe.getPortionen());
-                        b1.putString("menu",recipe.getMenueart());
-                        b1.putString("rezeptName",recipe.getName());
-                        b1.putString("image",recipe.getImage());
-                        b1.putBoolean("vegan",recipe.isVegan());
-                        b1.putBoolean("vegetarisch",recipe.isVegetarisch());
-                        b1.putBoolean("histamine",recipe.isHistamine());
+                        b1.putInt("wt", recipe.getArbeitszeit());
+                        b1.putInt("ct", recipe.getKochzeit());
+                        b1.putInt("ot", recipe.getGesamtzeit());
+                        b1.putInt("portionen", recipe.getPortionen());
+                        b1.putString("menu", recipe.getMenueart());
+                        b1.putString("rezeptName", recipe.getName());
+                        b1.putString("image", recipe.getImage());
+                        b1.putBoolean("vegan", recipe.isVegan());
+                        b1.putBoolean("vegetarisch", recipe.isVegetarisch());
+                        b1.putBoolean("histamine", recipe.isHistamine());
                         b1.putBoolean("fructose", recipe.isFructose());
                         b1.putBoolean("lactose", recipe.isLactose());
-                        b1.putInt("calories",recipe.getKalorien());
-                        b1.putInt("proteine",recipe.getProteine());
-                        b1.putString("author",recipe.getAuthor());
+                        b1.putInt("calories", recipe.getKalorien());
+                        b1.putInt("proteine", recipe.getProteine());
+                        b1.putString("author", recipe.getAuthor());
                         intent.putExtras(b1);
                         startActivity(intent);
-                    }else{
+                    } else {
                         showToast("Communication error occurred. Try again!" + response.message());
                     }
                 }
