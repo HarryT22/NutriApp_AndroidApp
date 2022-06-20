@@ -1,6 +1,10 @@
 package com.example.nutritionapplication;
 
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
@@ -47,6 +51,7 @@ public class AddRecipeActivity extends AppCompatActivity {
     ImageView imgGallery;
     RequestBody rq;
     int SELECT_PICTURE = 200;
+    ActivityResultLauncher<String> mTakePhoto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,15 +60,25 @@ public class AddRecipeActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         this.myApp = (NutritionAndroidApplication) getApplication();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+        mTakePhoto = registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
+            @Override
+            public void onActivityResult(Uri result) {
+                binding.recipeImage.setImageURI(result);
+            }
+        });
+
         this.imgGallery = findViewById(R.id.recipeImage);
         imgGallery.setOnClickListener(v -> {
-            imageChooser();
+            mTakePhoto.launch("image/*");
         });
 
         binding.submitRecipie.setOnClickListener((View view) ->{
             showToast("Calling save rezept");
             this.saveRezept();
         });
+
     }
 
     public void saveRezept(){
@@ -82,11 +97,13 @@ public class AddRecipeActivity extends AppCompatActivity {
         if(binding.vegetarianSubmitBox.isChecked()){
             this.isvegetarian = true;
         }
+
         int portions = Integer.parseInt(binding.portionsSubmit.getText().toString());
         int cookingtime = Integer.parseInt(binding.cookingtimeSubmit.getText().toString());
         int workingtime = Integer.parseInt(binding.workingtimeSubmit.getText().toString());
         String name = binding.recipenameSubmit.getText().toString();
         String menu = binding.menueTypeSubmit.getText().toString();
+
         imgGallery.buildDrawingCache();
         Bitmap bitmap = imgGallery.getDrawingCache();
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -94,6 +111,7 @@ public class AddRecipeActivity extends AppCompatActivity {
         byte[] byteArray = byteArrayOutputStream.toByteArray();
         String encoded = Base64.getEncoder().encodeToString(byteArray);
         rq = RequestBody.create(MediaType.parse("application/json"),encoded);
+
         if(name.equals("")){
             showToast("No empty recipe name allowed");
         }else{
@@ -134,32 +152,7 @@ public class AddRecipeActivity extends AppCompatActivity {
                 }
             });
         }
-
     }
-    public void imageChooser(){
-        Intent i = new Intent();
-        i.setType("image/*");
-        i.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(i, "Select Picture"), SELECT_PICTURE);
-    }
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (resultCode == RESULT_OK) {
-
-            // compare the resultCode with the
-            // SELECT_PICTURE constant
-            if (requestCode == SELECT_PICTURE) {
-                // Get the url of the image from data
-                Uri selectedImageUri = data.getData();
-                if (null != selectedImageUri) {
-                    // update the preview image in the layout
-                    binding.recipeImage.setImageURI(selectedImageUri);
-                }
-            }
-        }
-    }
-
 
     private void showToast(String message) {
         Toast toast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
