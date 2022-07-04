@@ -89,7 +89,7 @@ public class FoodSearchActivity extends AppCompatActivity {
                         foodsearchArrayAdapter.notifyDataSetChanged();
                         binding.foodSearchHeading.setText("Suchergebnisse für \"" + searchString + "\"");
                     } else {
-                        showToast("Communication error occured. " + response.message());
+                        showToast("No food with this name was found. ");
                     }
                 }
                 @Override
