@@ -1,5 +1,6 @@
 package com.example.nutritionapplication.service;
 
+import com.example.nutritionapplication.dto.JokeTO;
 import com.example.nutritionapplication.dto.MealTO;
 
 import java.util.List;
@@ -19,10 +20,10 @@ public interface MealService {
     @GET("/rest/meal/{day}/{month}/{year}")
     public Call<List<MealTO>> getDailyMeals(@Header ("Authorization") String jwt, @Path("day") int day, @Path("month") int month, @Path("year") int year);
 
-    @GET("rest/meal/tellAJoke/{category}")
-    public Call<String> getJoke(@Header ("Authorization") String jwt, @Path("category") String category);
+    @GET("/rest/meal/tellAJoke/{category}")
+    public Call<JokeTO> getJoke(@Header ("Authorization") String jwt, @Path("category") String category);
 
-    @POST("/rest/meal/{day}/{month}/{year}/{mealcategory}/{email}")
+    @POST("/rest/meal/{day}/{month}/{year}/{mealcategory}")
     public Call<Void> createMeal(@Header ("Authorization") String jwt, @Path("day") int day, @Path("month") int month, @Path("year") int year, @Path("mealcategory") String mealcategory);
 
     @DELETE("/rest/meal/{mealId}/{foodId}")

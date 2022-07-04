@@ -13,6 +13,10 @@ import com.example.nutritionapplication.adapter.MealArrayAdapter;
 import com.example.nutritionapplication.databinding.ActivityMealBinding;
 import com.example.nutritionapplication.dto.MealTO;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -46,7 +50,7 @@ public class MealActivity extends AppCompatActivity {
         month = c.get(Calendar.MONTH);
         day = c.get(Calendar.DAY_OF_MONTH);
         binding.slMealList.setAdapter(mealArrayAdapter);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         binding.slSwipeRefresh.setOnRefreshListener(() -> {
                     this.getMeals();
                     binding.slSwipeRefresh.setRefreshing(false);
@@ -61,17 +65,26 @@ public class MealActivity extends AppCompatActivity {
 
 
                     @Override
-                    public void onDateSet(DatePicker view, int year,
+                    public void onDateSet(DatePicker view, int _year,
                                           int monthOfYear, int dayOfMonth) {
-                        binding.headingMeals.setText("Meals " + (dayOfMonth) + "." + (monthOfYear+1) + "." + year);
+                        binding.headingMeals.setText("Meals " + (dayOfMonth) + "." + (monthOfYear+1) + "." + _year);
                         day = dayOfMonth;
                         month = monthOfYear+1;
-                        year = year;
+                        year = _year;
                         getMeals();
                     }
                 }, year, month, day);
-
-        datePickerDialog.show();
+        if(getIntent().getExtras() == null){
+             datePickerDialog.show();
+         }
+        else{
+            Bundle b = getIntent().getExtras();
+            this.day = b.getInt("day");
+            this.month = b.getInt("month");
+            this.year = b.getInt("year");
+            binding.headingMeals.setText("Meals " + day + "." + month + "." + year);
+            getMeals();
+        }
         binding.bnChooseDate.setOnClickListener((View view) -> {
             datePickerDialog.show();
         });
@@ -81,7 +94,7 @@ public class MealActivity extends AppCompatActivity {
     public void onBackPressed() {}
 
     public void getMeals() {
-        Call<List<MealTO>> call = this.myApp.getMealService().getDailyMeals("Bearer " + this.myApp.getJwt(), 10,04,2022);
+        Call<List<MealTO>> call = this.myApp.getMealService().getDailyMeals("Bearer " + this.myApp.getJwt(), day,month,year);
         call.enqueue(new Callback<List<MealTO>>() {
             @Override
             public void onResponse(Call<List<MealTO>> call, Response<List<MealTO>> response) {
@@ -89,10 +102,11 @@ public class MealActivity extends AppCompatActivity {
                     ArrayList<MealTO> newMealList = (ArrayList<MealTO>) response.body();
                     mealList.clear();
                     mealList.addAll(newMealList);
-                    System.out.println(mealList.get(0).getFoodEntries().toString());
                     mealArrayAdapter.notifyDataSetChanged();
                 } else {
-                    showToast("Communication error occured. " + response.message());
+                    mealList.clear();
+                    mealArrayAdapter.notifyDataSetChanged();
+                    showToast("No meal for this date found. ");
                 }
             }
             @Override
@@ -106,12 +120,20 @@ public class MealActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), FoodListActivity.class);
         Bundle b = new Bundle();
         b.putLong("id", m.getId());
+        b.putInt("day", this.day);
+        b.putInt("month", this.month);
+        b.putInt("year", this.year);
         intent.putExtras(b);
         startActivity(intent);
     }
 
     public  void goToCreateMeal() {
         Intent intent = new Intent(getApplicationContext(), MealAddingActivity.class);
+        Bundle b = new Bundle();
+        b.putInt("day", this.day);
+        b.putInt("month", this.month);
+        b.putInt("year", this.year);
+        intent.putExtras(b);
         startActivity(intent);
     }
 

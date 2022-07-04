@@ -10,9 +10,9 @@
         android:id="@+id/heading_foodEntries"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="132dp"
         android:layout_marginTop="24dp"
-        android:text="@string/foodEntries"
+        android:text="Einträge"
         android:textSize="34sp"
         android:textStyle="bold"
         android:visibility="visible"
@@ -48,5 +48,17 @@
             android:layout_height="match_parent" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <Button
+        android:id="@+id/back_to_meals"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="⬅️Meals"
+        android:textColor="@color/design_default_color_on_secondary"
+        android:backgroundTint="#F0F0F0"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

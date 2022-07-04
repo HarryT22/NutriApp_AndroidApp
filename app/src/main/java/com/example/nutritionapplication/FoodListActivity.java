@@ -31,6 +31,9 @@ public class FoodListActivity extends AppCompatActivity {
     private FoodArrayAdapter foodArrayAdapter;
     private ActivityFoodentriesBinding binding;
     private long id;
+    private int day;
+    private int month;
+    private int year;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +46,9 @@ public class FoodListActivity extends AppCompatActivity {
         binding.slFoodEntries.setAdapter(foodArrayAdapter);
         Bundle b = getIntent().getExtras();
         this.id = b.getLong("id");
+        this.day = b.getInt("day");
+        this.month = b.getInt("month");
+        this.year = b.getInt("year");
 
         binding.slSwipeRefresh.setOnRefreshListener(() -> {
                     this.getFoodEntries();
@@ -54,10 +60,17 @@ public class FoodListActivity extends AppCompatActivity {
             this.goToSearch();
         });
 
+        binding.backToMeals.setOnClickListener((View view) -> {
+            this.goToMeals();
+        });
+
         this.getFoodEntries();
     }
+
+
+
     public void getFoodEntries() {
-        Call<MealTO> call = this.myApp.getMealService().getMeal("Bearer " + this.myApp.getJwt(),1);
+        Call<MealTO> call = this.myApp.getMealService().getMeal("Bearer " + this.myApp.getJwt(),id);
         call.enqueue(new Callback<MealTO>() {
             @Override
             public void onResponse(Call<MealTO> call, Response<MealTO> response) {
@@ -68,7 +81,7 @@ public class FoodListActivity extends AppCompatActivity {
                     foodEntryTOList.addAll(newList);
                     foodArrayAdapter.notifyDataSetChanged();
                 } else {
-                    showToast("Communication error occured. " + response.message());
+                    showToast("No Entry for this meal found. ");
                 }
             }
             @Override
@@ -79,13 +92,14 @@ public class FoodListActivity extends AppCompatActivity {
     }
 
     public void deleteFood(FoodEntryTO foodEntryTO) {
-        Call<Void> call = this.myApp.getMealService().deleteFood("Bearer " + this.myApp.getJwt(), id, foodEntryTO.getId());
+        Call<Void> call = this.myApp.getMealService().deleteFood("Bearer " + this.myApp.getJwt(), id, foodEntryTO.getFood().getId());
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
                     foodEntryTOList.remove(foodEntryTO);
                     foodArrayAdapter.notifyDataSetChanged();
+                    showToast("Successfully deleted Foodentry.");
                 } else {
                     showToast("Communication error occured. " + response.message());
                 }
@@ -101,6 +115,19 @@ public class FoodListActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), FoodSearchActivity.class);
         Bundle b = new Bundle();
         b.putLong("id", this.id);
+        b.putInt("day", this.day);
+        b.putInt("month", this.month);
+        b.putInt("year", this.year);
+        intent.putExtras(b);
+        startActivity(intent);
+    }
+
+    public void goToMeals(){
+        Intent intent = new Intent(getApplicationContext(), MealActivity.class);
+        Bundle b = new Bundle();
+        b.putInt("day", day);
+        b.putInt("month", month);
+        b.putInt("year", year);
         intent.putExtras(b);
         startActivity(intent);
     }

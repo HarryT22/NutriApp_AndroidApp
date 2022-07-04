@@ -6,7 +6,7 @@
     <TextView
         android:id="@+id/sl_ListFoodItem"
         android:layout_width="326dp"
-        android:layout_height="85dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="0dp"
@@ -14,7 +14,8 @@
         android:paddingStart="8dp"
         android:paddingEnd="8dp"
         android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        />
 
     <ImageButton
         android:id="@+id/bn_deleteFood"

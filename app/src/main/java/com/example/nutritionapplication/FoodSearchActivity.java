@@ -35,6 +35,9 @@ public class FoodSearchActivity extends AppCompatActivity {
     private FoodSearchArrayAdapter foodsearchArrayAdapter;
     private ActivityFoodSearchBinding binding;
     private long id;
+    private int day;
+    private int month;
+    private int year;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +50,9 @@ public class FoodSearchActivity extends AppCompatActivity {
         binding.slFoodEntries.setAdapter(foodsearchArrayAdapter);
         Bundle b = getIntent().getExtras();
         this.id = b.getLong("id");
+        this.month = b.getInt("month");
+        this.year = b.getInt("year");
+        this.day = b.getInt("day");
 
         binding.slSwipeRefresh.setOnRefreshListener(() -> {
                     binding.slSwipeRefresh.setRefreshing(false);
@@ -99,6 +105,9 @@ public class FoodSearchActivity extends AppCompatActivity {
         Bundle b = new Bundle();
         b.putLong("mealId", this.id);
         b.putLong("foodId", food.getId());
+        b.putInt("day", this.day);
+        b.putInt("month", this.month);
+        b.putInt("year", this.year);
         b.putString("unitSize", food.getUnitSize());
         intent.putExtras(b);
         startActivity(intent);

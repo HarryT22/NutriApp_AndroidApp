@@ -29,6 +29,9 @@ public class EntryAddingActivity extends AppCompatActivity {
     private long foodId;
     private long mealId;
     private String unitSize;
+    private int day;
+    private int month;
+    private int year;
     private ActivityCreateFoodentryBinding binding;
 
     @Override
@@ -39,6 +42,9 @@ public class EntryAddingActivity extends AppCompatActivity {
         this.myApp = (NutritionAndroidApplication) getApplication();
         Bundle b = getIntent().getExtras();
         this.unitSize = b.getString("unitSize");
+        this.day = b.getInt("day");
+        this.month = b.getInt("month");
+        this.year = b.getInt("year");
         if (unitSize.contains("ml")) {
             binding.entryQuantityQuestion.setText("Wie viel Milliliter möchtest du eintragen?");
             binding.unitSize.setText("ML");
@@ -74,6 +80,9 @@ public class EntryAddingActivity extends AppCompatActivity {
                         Intent intent = new Intent(getApplicationContext(), FoodListActivity.class);
                         Bundle b = new Bundle();
                         b.putLong("id", mealId);
+                        b.putInt("day", day);
+                        b.putInt("month", month);
+                        b.putInt("year", year);
                         intent.putExtras(b);
                         startActivity(intent);
                     } else {

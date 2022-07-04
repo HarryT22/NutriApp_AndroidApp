@@ -94,10 +94,10 @@ public class MealTO {
 
     @Override
     public String toString() {
-        return mealCategory.toUpperCase() + "    Total Calories: " + calories + "\n" +
-            "Proteins: " + proteins + "\n" +
-            "Carbs: " + carbs + "\n" +
-            "Fats: " + fats;
+        return mealCategory.toUpperCase() + "    Gesamtkalorien: " + calories + "\n" +
+            "Eiweiß: " + Math.round(proteins*100.0)/100.0 + "\n" +
+            "Kohlenhydrate: " + Math.round(carbs*100.0)/100.0 + "\n" +
+            "Fette: " + Math.round(fats*100.0)/100.0;
     }
 }
 

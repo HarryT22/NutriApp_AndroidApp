@@ -85,8 +85,8 @@ public class FoodEntryTO {
         return this.getFood().getName().toUpperCase() +
                 "\n" + "Eintrag Kalorien: " + calories + "    " + quantity + unit
                 + "\n" +
-                "Eiweiß: " + proteins + "\n" +
-                "Kohlenhydrate: " + carbs + "\n" +
-                "Fette: " + fats;
+                "Eiweiß: " + Math.round(proteins*100.0)/100.0 + "\n" +
+                "Kohlenhydrate: " + Math.round(carbs*100.0)/100.0 + "\n" +
+                "Fette: " + Math.round(fats*100.0)/100.0;
     }
 }
